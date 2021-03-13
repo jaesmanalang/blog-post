@@ -11,3 +11,13 @@ exports.getPosts = asyncHandler(async (req, res) => {
         }
     })
 });
+
+exports.createPost = asyncHandler(async (req, res) => {
+    const newPost = await Post.create(req.body);
+    res.status(201).json({
+        status: 'success',
+        data: {
+            post: newPost
+        }
+    })
+})

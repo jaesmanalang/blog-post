@@ -4,8 +4,6 @@ const router = express.Router();
 
 router.get('/', postController.getPosts);
 
-router.post('/', (req, res) => {
-    res.send('Add Post Routes');
-})
+router.post('/', postController.createPost);
 
 module.exports = router;
