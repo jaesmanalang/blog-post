@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const HttpError = require('../utils/httpError');
 const asyncHandler = require('../utils/asyncHandler');
 
 exports.listView = asyncHandler(async (req, res) => {
@@ -16,7 +17,7 @@ exports.detailView = asyncHandler(async (req, res, next) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-        return next(new Error('Post ID not found'));
+        return next(new HttpError(`No post found with that ID`, 404));
     }
 
     res.status(200).json({
